@@ -4,6 +4,7 @@ namespace App\Http\ApiV1\Modules\Users\Controllers;
 
 use Illuminate\Http\Request;
 use App\Domain\Users\Models\Enrollment; 
+use App\Domain\Users\Models\User;
 
 class EnrollmentsController
 {
@@ -29,6 +30,14 @@ class EnrollmentsController
         $enrollment = Enrollment::find($id);
 
         return response()->json(['data' => $enrollment]);
+    }
+
+    public function getByUserId(Request $request) {
+        $id = $request->route('id');
+
+        $user = User::find($id);
+
+        return response()->json(['data' => $user->enrollments]);
     }
 
     public function delete(Request $request) {

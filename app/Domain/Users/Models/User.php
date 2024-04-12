@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Passport\HasApiTokens;
+use App\Domain\Users\Models\Enrollment;
  
 class User extends Authenticatable
 {
@@ -47,6 +48,12 @@ class User extends Authenticatable
         'is_creater'        => 'boolean',
         'is_private'        => 'boolean'
     ];
+
+
+    public function enrollments()
+    {
+        return $this->hasMany(Enrollment::class);
+    }
 }
 
 ?>
